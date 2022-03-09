@@ -2,6 +2,7 @@
 using GLFW
 using FreeType
 using WAV
+using Dates
 
 function init()
     global GLFW
@@ -65,4 +66,19 @@ function endLoop()
 
     GLFW.DestroyWindow(window)
     exit()
+end
+
+function errLog(errNum::Int, errDesc::String)   
+    msg = "Game Error: | $(Date.now()) | $(errDesc)"
+    println(msg)
+    if( (function ()
+            for num in readdir()
+                if num == "txt"
+                    return true
+            end
+        return false
+        end)() )
+        cd("txt")
+    else
+    mkdir("txt")
 end
