@@ -1,4 +1,3 @@
-
 using GLFW
 using FreeType
 using WAV
@@ -73,12 +72,25 @@ function errLog(errNum::Int, errDesc::String)
     println(msg)
     if( (function ()
             for num in readdir()
-                if num == "txt"
+                if num == ".txt"
                     return true
+                end
             end
         return false
         end)() )
-        cd("txt")
+        cd(".txt")
     else
-    mkdir("txt")
+        mkdir(".txt")
+    end
+    touch("errLog.txt")
+    
+    try
+        f = open("errLog.txt", "w")
+        write(f,msg)
+        catch
+        #Emergency Window Here    
+        end
+        finally
+            close(f) 
+    end
 end

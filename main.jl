@@ -1,5 +1,9 @@
 include("src/libbckend.jl")
 
+#=
+    Notes: 
+    Remember to update libbckend with error update
+=#
 
 function julia_main()::Cint
     if(init())
