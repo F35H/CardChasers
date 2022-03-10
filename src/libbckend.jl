@@ -1,7 +1,23 @@
+using ModernGL
 using GLFW
 using FreeType
 using WAV
 using Dates
+
+macro pointGen(verts, ind, draw)
+    VBA::UInt,VBO::UInt,EBO::UInt = 0
+    ModernGL.glGenVertexArray(1,VBA)
+    ModernGL.glGenBuffers(1,VBO)
+    ModernGL.glGenBuffers(1,EBO)
+    
+    ModernGL.glBindVertexArray(VBA)
+    
+    ModernGL.glBindBuffer(GL_ARRAY_BUFFER, VBO)
+    ModernGL.glBufferData(GL_ARRAY_BUFFER, sieof(verts), verts, draw)
+    
+    ModernGL.glBindBuffer(EBO)
+    ModernGL.glBufferData(GL_ARRAY_BUFFER, sieof(ind), ind, draw)
+end
 
 function init()
     global GLFW
