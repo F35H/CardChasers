@@ -4,19 +4,24 @@ using FreeType
 using WAV
 using Dates
 
-macro pointGen(verts, ind, draw)
-    VBA::UInt,VBO::UInt,EBO::UInt = 0
-    ModernGL.glGenVertexArray(1,VBA)
-    ModernGL.glGenBuffers(1,VBO)
-    ModernGL.glGenBuffers(1,EBO)
-    
-    ModernGL.glBindVertexArray(VBA)
-    
-    ModernGL.glBindBuffer(GL_ARRAY_BUFFER, VBO)
-    ModernGL.glBufferData(GL_ARRAY_BUFFER, sieof(verts), verts, draw)
-    
-    ModernGL.glBindBuffer(EBO)
-    ModernGL.glBufferData(GL_ARRAY_BUFFER, sieof(ind), ind, draw)
+
+function pointGen(verts, ind, draw)
+        vba = GLuint[0]
+        glGenVertexArrays(1, vba)
+        
+        vbo = GLuint[0]
+        glGenBuffers(1, vbo)
+        
+        ebo = GLuint[0]
+        glGenBuffers(1, ebo)
+        
+        glBindVertexArray(vba[1])
+        
+        glBindBuffer(GL_ARRAY_BUFFER, vbo[1])
+        glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, draw)
+        
+        glBindBuffer(GL_ARRAY_BUFFER, ebo[1])
+        glBufferData(GL_ARRAY_BUFFER, sizeof(ind), ind, draw)
 end
 
 function init()
@@ -64,14 +69,13 @@ function mainLoop()
 
     # Loop until the user closes the window
     while !GLFW.WindowShouldClose(window)
-
     # Render here
 
     # Swap front and back buffers
-    GLFW.SwapBuffers(window)
+        GLFW.SwapBuffers(window)
 
     # Poll for and process events
-    GLFW.PollEvents()
+        GLFW.PollEvents()
     end
 end
 
@@ -105,8 +109,8 @@ function errLog(errNum::Int, errDesc::String)
         write(f,msg)
         catch
         #Emergency Window Here    
-        end
         finally
             close(f) 
     end
 end
+

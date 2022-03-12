@@ -7,6 +7,7 @@ include("src/menuscene.jl")
 
 function julia_main()::Cint
     if(init())
+        menuPre()
         mainLoop()
         endLoop()
     else 
