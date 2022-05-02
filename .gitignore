@@ -1,0 +1,5 @@
+*.geany
+GL*
+/models
+/txt
+.gitignore
