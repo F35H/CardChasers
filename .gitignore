@@ -1,5 +1,12 @@
 *.geany
+<<<<<<< HEAD
 GL*
 /models
 /txt
 .gitignore
+=======
+ser/runtests.jl
+.gitignore
+GL*
+txt/
+>>>>>>> 5f9517fcfc507bc9c83bc0ca5755ab4a4d01f653
